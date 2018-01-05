@@ -1,54 +1,54 @@
-# Getting Started with monero-wallet-cli
+# Getting Started with mynt-wallet-cli
 
 Thanks for choosing Monero Wallet for Chrome! To use the Monero Wallet for Chrome extension,
-you'll need to install and set up Monero's monero-wallet-cli.
+you'll need to install and set up Monero's mynt-wallet-cli.
 
 The basic flow is as follows:
 
 1. Download the official releases for your system from [getmonero.org](https://getmonero.org/downloads/).
 2. Unzip and save the downloaded files in a place you will remember.
-3. Set up your monero-wallet-cli on RPC mode.
+3. Set up your mynt-wallet-cli on RPC mode.
 
-To set up your wallet, you can use our [pre-configured setup scripts](#use-our-pre-configured-monero-wallet-cli-setup)
-or follow the [instructions below to make your own](#configure-monero-wallet-cli-yourself).
+To set up your wallet, you can use our [pre-configured setup scripts](#use-our-pre-configured-mynt-wallet-cli-setup)
+or follow the [instructions below to make your own](#configure-mynt-wallet-cli-yourself).
 
 ## Table of Contents
 
-1. [Getting Started with monero-wallet-cli](#getting-started-with-monero-wallet-cli)
-2. [Use our pre-configured monero-wallet-cli setup](#use-our-pre-configured-monero-wallet-cli-setup)
-3. [Configure monero-wallet-cli Yourself](#configure-monero-wallet-cli-yourself)
-   1. [Opening monero-wallet-cli for the first time](#opening-monero-wallet-cli-for-the-first-time)
-   2. [Running monero-wallet-cli in JSON RPC mode](#running-monero-wallet-cli-in-json-rpc-mode)
-   3. [Running monero-wallet-cli headless in JSON RPC mode](#running-monero-wallet-cli-headless-in-json-rpc-mode)
+1. [Getting Started with mynt-wallet-cli](#getting-started-with-mynt-wallet-cli)
+2. [Use our pre-configured mynt-wallet-cli setup](#use-our-pre-configured-mynt-wallet-cli-setup)
+3. [Configure mynt-wallet-cli Yourself](#configure-mynt-wallet-cli-yourself)
+   1. [Opening mynt-wallet-cli for the first time](#opening-mynt-wallet-cli-for-the-first-time)
+   2. [Running mynt-wallet-cli in JSON RPC mode](#running-mynt-wallet-cli-in-json-rpc-mode)
+   3. [Running mynt-wallet-cli headless in JSON RPC mode](#running-mynt-wallet-cli-headless-in-json-rpc-mode)
    4. [Automating all the things](#automating-all-the-things)
 
 
-# Use our pre-configured monero-wallet-cli setup
+# Use our pre-configured mynt-wallet-cli setup
 
-If you want to skip the hassle of configuring your new monero-wallet-cli in RPC mode, you can save
+If you want to skip the hassle of configuring your new mynt-wallet-cli in RPC mode, you can save
 time and trouble by downloading the script below based on your computer's Operating System.
 
 * [Windows](#) - Coming Soon
 * [Linux and OS X](#) - Coming Soon
 
-Once downloaded, copy the script to the location you installed monero-wallet-cli.
+Once downloaded, copy the script to the location you installed mynt-wallet-cli.
 
 On **Windows**, you can simply double click the script and it will run. Feel free to make a
 shortcut to it on your desktop or elsewhere.
 
 On **Linux** or **OS X**, open a terminal and navigate to where you saved the script. Then
-run `./run_monero-wallet-cli.sh` and follow the instructions.
+run `./run_mynt-wallet-cli.sh` and follow the instructions.
 
 
-# Configure monero-wallet-cli yourself
+# Configure mynt-wallet-cli yourself
 
-This guide will walk through every step needed to setup monero-wallet-cli in RPC mode yourself.
+This guide will walk through every step needed to setup mynt-wallet-cli in RPC mode yourself.
 It is intended for users that do not want to use our pre-configured scripts or those that
 want to learn how to write their own script.
 
-## Opening monero-wallet-cli for the first time
+## Opening mynt-wallet-cli for the first time
 
-Getting started is pretty much as simple as typing "monero-wallet-cli" - no wonder it's called that!
+Getting started is pretty much as simple as typing "mynt-wallet-cli" - no wonder it's called that!
 
 1. Open the command line:
 
@@ -61,21 +61,21 @@ Getting started is pretty much as simple as typing "monero-wallet-cli" - no wond
 2. Navigate to where you saved the official release:
 
    In Windows, type something like `cd C:\Programs\monero-release\`, specifying the path to
-   where you installed monero-wallet-cli.
+   where you installed mynt-wallet-cli.
 
    In the OS X or Linux, type `cd /path/to/where/you/installed/the/release/`
 
-3. Open monero-wallet-cli:
+3. Open mynt-wallet-cli:
 
    If you want to connect to a monero daemon node on the same machine as your wallet, this is
-   as easy as typing `monero-wallet-cli.exe` on Windows or `./monero-wallet-cli` on OS X and Linux.
+   as easy as typing `mynt-wallet-cli.exe` on Windows or `./mynt-wallet-cli` on OS X and Linux.
 
    If you do not want to run a daemon node, you can connect to publicly available nodes by
-   typing `./monero-wallet-cli --daemon-address <address>:<port>`. For example,
+   typing `./mynt-wallet-cli --daemon-address <address>:<port>`. For example,
 
-       ./monero-wallet-cli --daemon-address node.moneroclub.com:8880
+       ./mynt-wallet-cli --daemon-address node.moneroclub.com:8880
 
-   (Use `monero-wallet-cli.exe` if on Windows.)
+   (Use `mynt-wallet-cli.exe` if on Windows.)
 
    You will be prompted for a name for your wallet. Choose whatever you like. For the
    remainder of this tutorial, we will use the wallet name `ChromeWallet`. Then choose a
@@ -90,23 +90,23 @@ Getting started is pretty much as simple as typing "monero-wallet-cli" - no wond
    you're ready for the last step!
 
 
-## Running monero-wallet-cli in JSON RPC mode
+## Running mynt-wallet-cli in JSON RPC mode
 
 To open your wallet in Linux/OS X, you'll use the command:
 
-    ./monero-wallet-cli --wallet-file ChromeWallet --password xxxx --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
+    ./mynt-wallet-cli --wallet-file ChromeWallet --password xxxx --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
 
 Note the extra commands `--rpc-bind-ip 127.0.0.1` and `--rpc-bind-port`. This is what lets
-the Chrome extension talk to monero-wallet-cli. You can choose any port you wish, but 18082 is a
+the Chrome extension talk to mynt-wallet-cli. You can choose any port you wish, but 18082 is a
 good choice if you are unsure. When you open the Chrome extension for the first time, you
 will be taken to a configuration page where you will tell the extension what port you chose.
 
 If you want to connect to a remote node, you add the `--daemon-address` argument. For example:
 
-    ./monero-wallet-cli --wallet-file ChromeWallet --password xxxx --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082 --daemon-address node.moneroclub.com:8880
+    ./mynt-wallet-cli --wallet-file ChromeWallet --password xxxx --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082 --daemon-address node.moneroclub.com:8880
 
 
-## Running monero-wallet-cli headless in JSON RPC mode
+## Running mynt-wallet-cli headless in JSON RPC mode
 
 If you are running the wallet in RPC mode, you probably don't want to have to leave your
 command line open all the time. Depending on your system, one of these solutions might help
@@ -114,14 +114,14 @@ you keep your wallet offscreen.
 
 ### Windows:
 
-Switch to Linux. J/K... For now, we recommend minimizing the command prompt that monero-wallet-cli
+Switch to Linux. J/K... For now, we recommend minimizing the command prompt that mynt-wallet-cli
 opens in. We are evaluating more robust options.
 
 ### OS X and Linux:
 
 We recommend using `screen` to be able to run your wallet in the background.
 
-    screen ./monero-wallet-cli --wallet-file ChromeWallet --password xxxx --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
+    screen ./mynt-wallet-cli --wallet-file ChromeWallet --password xxxx --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
 
 When you first do this, it will look like a normal command line window. However, if you type
 `cntl`+`a`+`d`, it will detach to the background. To return to the screen later, type `screen -r`
@@ -130,7 +130,7 @@ in a terminal.
 
 ## Automating all the things
 
-Now that you've walked through the monero-wallet-cli 101 tutorial, I'll leave you with this: how
+Now that you've walked through the mynt-wallet-cli 101 tutorial, I'll leave you with this: how
 to write a script that does all this stuff for you so that you don't have to remember it every time.
 
 ### OS X and Linux
@@ -141,7 +141,7 @@ The nano text editor will open in your terminal. Write the following:
 
     #!/bin/sh
     PASS=$1
-    screen ./monero-wallet-cli --wallet-file ChromeWallet --password ${PASS} --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
+    screen ./mynt-wallet-cli --wallet-file ChromeWallet --password ${PASS} --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
 
 Include `--daemon-address` if appropriate.
 
@@ -154,8 +154,8 @@ Notice that your password should follow `run_wallet_chrome.sh`. This helps keep 
 somewhat protected by not including your password as clear text in the shell script itself.
 As before, if you want it to run headless, just type `cntl`+`a` followed by `d`.
 
-monero-wallet-cli should now run in the background on your computer until you either restart
-your machine or close monero-wallet-cli (you can do this from the extension), at which point you
+mynt-wallet-cli should now run in the background on your computer until you either restart
+your machine or close mynt-wallet-cli (you can do this from the extension), at which point you
 will need to start it again.
 
 If you would like to make it so you can double-click your run script and it will automatically
@@ -167,10 +167,10 @@ Select "Always Open With" and click "Open". In Linux, try these instructions:
 
 On Windows, we will write a "batfile" to do all of this for us.
 
-Open a text editor, and copy your monero-wallet-cli command. Ex:
+Open a text editor, and copy your mynt-wallet-cli command. Ex:
 
     set /p Input=Enter password:
-    monero-wallet-cli.exe --wallet-file ChromeWallet --password "%Input%" --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
+    mynt-wallet-cli.exe --wallet-file ChromeWallet --password "%Input%" --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082
 
 Now save as a .bat file, ex: `run_wallet_chrome.bat`.
 Make sure that you change File Type ".txt" to "All Files" so that your script saves properly.

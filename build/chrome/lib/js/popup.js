@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     wallet_info.password = String(document.getElementById('password').value);
 
     var request = {
-      greeting: "Monero monero-wallet-rpc Update Wallet Info",
+      greeting: "Mynt mynt-wallet-rpc Update Wallet Info",
       newWalletPort: wallet_info.port,
       saveAuth: wallet_info.saveAuth,
       username: wallet_info.username,
@@ -135,7 +135,7 @@ var check_correct_auth = function (info) {
 }
 
 var get_wallet_info = function () {
-  var request = {greeting: "Monero monero-wallet-rpc Send Wallet Info"};
+  var request = {greeting: "Mynt mynt-wallet-rpc Send Wallet Info"};
   chrome.runtime.sendMessage(request, function (resp) {
     wallet_info.port = resp.port;
 
