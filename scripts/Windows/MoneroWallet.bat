@@ -9,8 +9,8 @@ REM This script is released under the MIT License.
 
 @echo off
 cls
-set WALLET_FILENAME=wallet.bin
-set PROGRAM_DIR=C:\Program Files\MoneroWallet
+set WALLET_FILENAME=rpc.bin
+set PROGRAM_DIR=C:\Users\world\libraries\classrepo\coins\mynt\build\release\bin
 
 echo.
 echo ====================================================================================
