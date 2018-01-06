@@ -28,7 +28,7 @@ set FILE=%WALLET_DIR%\%WALLET_FILENAME%
 
 echo Which Monero daemon would you like to connect to?
 echo   1. remote (node.moneroclub.com:8880)
-echo   2. local  (127.0.0.1:18081)
+echo   2. local  (127.0.0.1:18091)
 echo   3. custom
 echo.
 set /p DAEMON=Please make a selection:
@@ -42,10 +42,10 @@ if %DAEMON% == 1 (
     set USE_DAEMON=node.moneroclub.com:8880
 )
 if %DAEMON% == 2 (
-    set USE_DAEMON=127.0.0.1:18081
+    set USE_DAEMON=127.0.0.1:18091
 )
 if %DAEMON% == 3 (
-    set /p USE_DAEMON=Please enter custom daemon (ex: 192.168.0.1:18081):
+    set /p USE_DAEMON=Please enter custom daemon (ex: 192.168.0.1:18091):
 )
 
 echo.
@@ -56,7 +56,7 @@ echo.
 if exist %FILE% (
     REM If this script has been run previously, a wallet should already exist. Start it in RPC mode.
 
-    echo Launching mynt-wallet-cli in RPC mode, listening on localhost (127.0.0.1), port 18082.
+    echo Launching mynt-wallet-cli in RPC mode, listening on localhost (127.0.0.1), port 18092.
     echo.
     set /p PASS=Please enter your password:
 
@@ -67,7 +67,7 @@ if exist %FILE% (
     echo Launching mynt-wallet-cli...
     echo.
 
-    start "%PROGRAM_DIR%\mynt-wallet-cli --wallet-file %FILE% --password %PASS% --user-agent %USERAGENT% --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082 --daemon-address %USE_DAEMON%"
+    start "%PROGRAM_DIR%\mynt-wallet-cli --wallet-file %FILE% --password %PASS% --user-agent %USERAGENT% --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18092 --daemon-address %USE_DAEMON%"
 
     echo mynt-wallet-cli should now be running in RPC mode. You can verify this by checking if
     echo your Chrome extension says "online". It may take a few seconds for the wallet to
