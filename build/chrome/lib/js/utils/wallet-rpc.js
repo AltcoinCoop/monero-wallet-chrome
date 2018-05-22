@@ -12,13 +12,13 @@
 chrome.webRequest.onAuthRequired.addListener(function (details) {
   var myCredentials = {
     username: wallet_info.username,
-    password: wallet_info.password,
-    remote: wallet_info.remote
+    password: wallet_info.password
   };
   return {authCredentials: myCredentials};
 }, {urls: ["http://127.0.0.1/*"]}, ["blocking"]);
 
 // general wallet JSON RPC calling:
+var remote;
 function walletJSONrpc(remote, port, method, params, onSuccess, onFailure) {
     // If remote is not set, provide a default 
     if (remote == undefined || remote == "") {
@@ -26,7 +26,7 @@ function walletJSONrpc(remote, port, method, params, onSuccess, onFailure) {
     }
     // If port is not set, provide a default 
     if (port == undefined || port == "") {
-      port = '28888';
+      port = '20202';
     }
   // Set up JSON RPC call:
   var host = String(remote);
