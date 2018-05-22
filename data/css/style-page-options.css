@@ -10,6 +10,7 @@ p { margin: 5px; }
 .center { width: 100%; text-align: center; }
 
 #monero-wallet-rpc-port { width: 100px; }
+#electronero-wallet-rpc-port { width: 100px; }
 #options-username { width: 200px; }
 #options-password { width: 200px; }
 span#status { color: #98CD6D; line-height: 16px; }
