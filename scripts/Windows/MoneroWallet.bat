@@ -14,7 +14,7 @@ set PROGRAM_DIR=C:\Users\world\libraries\coins\electronero\build\release\bin
 
 echo.
 echo ====================================================================================
-echo                    Monero electronero-wallet-cli Launcher for Windows
+echo                    Electronero electronero-wallet-cli Launcher for Windows
 echo.
 
 
