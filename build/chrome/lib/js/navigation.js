@@ -75,7 +75,7 @@ function openOptions() {
 }
 
 function powerDownWallet() {
-  stopWallet(wallet_info.port, function() {
+  stopWallet(wallet_info.remote, wallet_info.port, function() {
     openStatus('success');
     document.getElementById('wallet-status-online').style.display = 'none';
     document.getElementById('wallet-status-offline').style.display = 'inline-block';
