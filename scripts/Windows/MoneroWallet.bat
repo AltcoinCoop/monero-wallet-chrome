@@ -1,7 +1,7 @@
 REM Monero mynt-wallet-cli Launcher, 2016 bigreddmachine.
 REM https://github.com/Monero-Monitor/monero-wallet-chrome
 REM
-REM This script allows mynt-wallet-cli to be run in rpc mode easily and quickly. User passwords
+REM This script allows electronero-wallet-cli to be run in rpc mode easily and quickly. User passwords
 REM are secured by passing them as a terminal input, rather than requiring them to be stored
 REM as clear text in the script.
 REM
@@ -10,11 +10,11 @@ REM This script is released under the MIT License.
 @echo off
 cls
 set WALLET_FILENAME=rpc.bin
-set PROGRAM_DIR=C:\Users\world\libraries\classrepo\coins\mynt\build\release\bin
+set PROGRAM_DIR=C:\Users\world\libraries\coins\electronero\build\release\bin
 
 echo.
 echo ====================================================================================
-echo                    Monero mynt-wallet-cli Launcher for Windows
+echo                    Monero electronero-wallet-cli Launcher for Windows
 echo.
 
 
@@ -35,13 +35,13 @@ if NOT %DAEMON% == 1 if NOT %DAEMON% == 2 if NOT %DAEMO% == 3 (
 )
 
 if %DAEMON% == 1 (
-    set USE_DAEMON=node.moneroclub.com:8880
+    set USE_DAEMON=pool.electronero.org:28888
 )
 if %DAEMON% == 2 (
-    set USE_DAEMON=127.0.0.1:22092
+    set USE_DAEMON=127.0.0.1:28888
 )
 if %DAEMON% == 3 (
-    set /p USE_DAEMON=Please enter custom daemon (ex: 192.168.0.1:22092):
+    set /p USE_DAEMON=Please enter custom daemon (ex: 165.227.189.226:28888):
 )
 
 echo.
@@ -52,7 +52,7 @@ echo.
 if exist %FILE% (
     REM If this script has been run previously, a wallet should already exist. Start it in RPC mode.
 
-    echo Launching mynt-wallet-cli in RPC mode, listening on localhost (127.0.0.1), port 22092.
+    echo Launching electronero-wallet-cli in RPC mode, listening on localhost (127.0.0.1), port 28888.
     echo.
     set /p PASS=Please enter your password:
 
@@ -60,19 +60,19 @@ if exist %FILE% (
     echo Choose a User Agent. You can use a new User Agent each time you use your wallet.
     set /p USERAGENT=Please enter a User Agent:
 
-    echo Launching mynt-wallet-cli...
+    echo Launching electronero-wallet-cli...
     echo.
 
-    start "%PROGRAM_DIR%\mynt-wallet-cli --wallet-file %FILE% --password %PASS% --user-agent %USERAGENT% --rpc-bind-ip 127.0.0.1 --rpc-bind-port 22092 --daemon-address %USE_DAEMON%"
+    start "%PROGRAM_DIR%\electronero-wallet-cli --wallet-file %FILE% --password %PASS% --user-agent %USERAGENT% --rpc-bind-ip 127.0.0.1 --rpc-bind-port 28888 --daemon-address %USE_DAEMON%"
 
-    echo mynt-wallet-cli should now be running in RPC mode. You can verify this by checking if
+    echo electronero-wallet-cli should now be running in RPC mode. You can verify this by checking if
     echo your Chrome extension says "online". It may take a few seconds for the wallet to
-    echo connect to mynt-wallet-cli. If it fails to come online, please check your password
+    echo connect to electronero-wallet-cli. If it fails to come online, please check your password
     echo and user agent and try again.
     echo.
-    echo To shutdown mynt-wallet-cli, choose 'Stop Wallet' in the extension's menu.
+    echo To shutdown electronero-wallet-cli, choose 'Stop Wallet' in the extension's menu.
     echo.
-    echo Thank you for using Monero Wallet for Chrome! You may now close this window.
+    echo Thank you for using Electronero Wallet for Chrome! You may now close this window.
     echo.
 
 ) else (
@@ -83,9 +83,9 @@ if exist %FILE% (
     echo To create a wallet, follow the prompts. Enter a password, then pick a
     echo language for your wallet.
     echo.
-    echo Once you have created a wallet, mynt-wallet-cli will open and a prompt
+    echo Once you have created a wallet, electronero-wallet-cli will open and a prompt
     echo line will appear. Type 'refresh', then once it is done type 'exit'.
-    echo You are then ready to use Monero Wallet for Chrome.
+    echo You are then ready to use Electronero Wallet for Chrome.
     echo.
 
     set /p userinput=When you are ready to begin, press enter...
@@ -102,7 +102,7 @@ if exist %FILE% (
         exit
     )
     echo ----------
-    echo.%PROGRAM_DIR%\mynt-wallet-cli --generate-new-wallet %FILE% --password %NEWPASS%  --daemon-address %USE_DAEMON%
+    echo.%PROGRAM_DIR%\electronero-wallet-cli --generate-new-wallet %FILE% --password %NEWPASS%  --daemon-address %USE_DAEMON%
 
     echo.
     echo ----------
@@ -111,7 +111,7 @@ if exist %FILE% (
     if exist %FILE% (
         echo Everything looks good. You can now start your wallet in RPC mode at any time by re-running this script.
         echo.
-        set /p userinput=Press "enter" to exit Monero mynt-wallet-cli Launcher.
+        set /p userinput=Press "enter" to exit Electronero mynt-wallet-cli Launcher.
     ) else (
         echo There seems to have been an issue creating your wallet.
         echo.
