@@ -7,7 +7,8 @@ var wallet_info = {
   status: "off",
   saveAuth: false,
   username: '',
-  password: ''
+  password: '',
+  remote: ''
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Get wallet info from settings:
   chrome.storage.sync.get({
     walletPort: '',
+    remote: '',
     saveAuth: false,
     username: '',
     password: ''
@@ -23,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     wallet_info.port = items.walletPort;
     wallet_info.saveAuth = items.saveAuth;
     wallet_info.username = items.username;
+    wallet_info.remote = items.remote;
     wallet_info.password = items.password;
     if (Number(wallet_info.port) >= 1 && Number(wallet_info.port) <= 65535) {
       check_correct_auth(wallet_info);
@@ -43,12 +46,14 @@ document.addEventListener('DOMContentLoaded', function () {
     wallet_info.saveAuth = true;
     wallet_info.username = String(document.getElementById('username').value);
     wallet_info.password = String(document.getElementById('password').value);
+    wallet_info.remote = String(document.getElementById('remote').value);
 
     var request = {
       greeting: "Mynt mynt-wallet-rpc Update Wallet Info",
       newWalletPort: wallet_info.port,
       saveAuth: wallet_info.saveAuth,
       username: wallet_info.username,
+      remote: wallet_info.remote,
       password: wallet_info.password
     };
     chrome.runtime.sendMessage(request, function (resp) {
@@ -105,7 +110,7 @@ function removeBadge() {
 
 var check_correct_auth = function (info) {
   if (info.saveAuth === true) {
-    getAddress(wallet_info.port,
+    getAddress(wallet_info.remote, wallet_info.port,
       function (resp) {
         if (resp.hasOwnProperty('result')) {
           var status = document.getElementById('auth-success');
@@ -135,9 +140,10 @@ var check_correct_auth = function (info) {
 }
 
 var get_wallet_info = function () {
-  var request = {greeting: "Mynt mynt-wallet-rpc Send Wallet Info"};
+  var request = {greeting: "Electronero electronero-wallet-rpc Send Wallet Info"};
   chrome.runtime.sendMessage(request, function (resp) {
     wallet_info.port = resp.port;
+    wallet_info.remote = resp.remote;
 
     if (resp.status == 'ok') {
       wallet_info.status = resp.status;
@@ -167,7 +173,7 @@ var get_wallet_info = function () {
         document.getElementById('address-string').textContent = wallet_info.address;
         document.getElementById('address-string-ell').textContent = '...';
         var qrcode = new QRCode("address-qr", {
-          text: "monero:" + wallet_info.address,
+          text: "electronero:" + wallet_info.address,
           width: 192,
           height: 192,
           colorDark : "#000000",
@@ -216,7 +222,7 @@ function checkIntegrated () {
 }
 
 function receiveIntegratedQR (payment_id, amount) {
-  makeIntegratedAddress(wallet_info.port, payment_id,
+  makeIntegratedAddress(wallet_info.remote, wallet_info.port, payment_id,
     function (resp) {
       console.log(resp);
       if (resp.hasOwnProperty('result')) {
@@ -225,7 +231,7 @@ function receiveIntegratedQR (payment_id, amount) {
         var integrated_address = resp.result.integrated_address;
         var amnt_str = String(amount);
 
-        var uri_string = 'monero:' + integrated_address;
+        var uri_string = 'electronero:' + integrated_address;
         if (amnt_str.length > 0) uri_string += '?amount=' + amnt_str;
 
         var qrcode = new QRCode('receive-qr', {
@@ -281,7 +287,7 @@ function getAllIndices(transfers, tx_hash) {
 }
 
 function fillIncomingTransactionTable(tx_table_id, transfer_type) {
-  incomingTransfers(wallet_info.port, transfer_type,
+  incomingTransfers(wallet_info.remote, wallet_info.port, transfer_type,
     function (resp) { // Successfully get transfers
 
       var transfers = resp.result.transfers;
@@ -330,7 +336,7 @@ function fillIncomingTransactionTable(tx_table_id, transfer_type) {
           var hash   = row.insertCell(2);
           hash.className = 'tx-hash';
           hash.id = 'tx-hash-' + k;
-          hash.innerHTML = '<div class="in-tx-hash"><a target="_blank" href="http://moneroblocks.info/search/' + transfer_hash + '">' + transfer_hash + '</a></div><div class="in-tx-hash-ell">...</div>';
+          hash.innerHTML = '<div class="in-tx-hash"><a target="_blank" href="http://blockexplorer.electronero.org/search/' + transfer_hash + '">' + transfer_hash + '</a></div><div class="in-tx-hash-ell">...</div>';
 
           k += 1;
         }
@@ -406,7 +412,7 @@ function fillOutgoingTransactionTable(tx_table_id, transfer_type) {
 
       var pay_div = document.createElement('div');
       pay_div.className = 'outgoing-pay-id';
-      pay_div.innerHTML = '<div class="out-pay-id-link"><span class="bold">Payment ID:</span> <a target="_blank" href="http://moneroblocks.info/search/' + pay_id + '">' + pay_id + '</a></div><div class="in-tx-hash-ell">...</div>';
+      pay_div.innerHTML = '<div class="out-pay-id-link"><span class="bold">Payment ID:</span> <a target="_blank" href="http://blockexplorer.electronero.org/search/' + pay_id + '">' + pay_id + '</a></div><div class="in-tx-hash-ell">...</div>';
       info_details.appendChild(pay_div);
 
       var dest_title = document.createElement('div');
@@ -426,7 +432,7 @@ function fillOutgoingTransactionTable(tx_table_id, transfer_type) {
       hash_list.className = 'outgoing-hashes';
       hash_list.innerHTML = '<span class="bold">Tx Hashes:</span><br>';
       for (var j = 0; j < hashes.length; j++) {
-        hash_list.innerHTML += '<div class="outgoing-hash-link"><a target="_blank" href="http://moneroblocks.info/search/' + hashes[i] + '">' + hashes[i] + '</a></div><div class="in-tx-hash-ell">...</div><br>';
+        hash_list.innerHTML += '<div class="outgoing-hash-link"><a target="_blank" href="http://blockexplorer.electronero.org/search/' + hashes[i] + '">' + hashes[i] + '</a></div><div class="in-tx-hash-ell">...</div><br>';
       }
       info_details.appendChild(hash_list);
 
@@ -627,7 +633,7 @@ function sendMonero () {
 
   var fee = undefined, unlock_time = undefined, get_tx_key = true, new_algo = true;
 
-  transferSplit(wallet_info.port, dests, pay_id, fee, mixin, unlock_time, get_tx_key, new_algo,
+  transferSplit(wallet_info.remote, wallet_info.port, dests, pay_id, fee, mixin, unlock_time, get_tx_key, new_algo,
     function (resp) {
       console.log(resp);
       if (resp.hasOwnProperty("result")) {
@@ -638,7 +644,7 @@ function sendMonero () {
         for (var i=0; i < tx_hash_list.length; i++) {
           var this_hash = tx_hash_list[i];
           tx_hashes.push(this_hash);
-          document.getElementById('send-txhashlist-popup').innerHTML += '<a target="_blank" href="http://explore.moneroworld.com/search?value=' + this_hash + '">' + this_hash + '</a><br>';
+          document.getElementById('send-txhashlist-popup').innerHTML += '<a target="_blank" href="http://blockexplorer.electronero.org/search?value=' + this_hash + '">' + this_hash + '</a><br>';
         }
 
         outgoingTxsDB.createOutgoingTx(pay_id, dests, tx_hashes, function(contact) {
@@ -669,7 +675,7 @@ function sendMonero () {
     },
     function (err) {
       var status = document.getElementById('send-error');
-      status.innerHTML = 'There was an error connecting to monero-wallet-rpc.';
+      status.innerHTML = 'There was an error connecting to electronero-wallet-rpc.';
       status.style.display = 'block';
       setTimeout(function() {
         status.style.display = 'none';

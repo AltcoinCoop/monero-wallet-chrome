@@ -9,6 +9,7 @@ function openStatus(code) {
     document.getElementById('status-success').style.display = 'none';
     document.getElementById('status-error').style.display = 'inline-block';
     document.getElementById('status-port').innerHTML = wallet_info.port;
+    document.getElementById('status-remote').innerHTML = wallet_info.remote;
   }
 }
 
@@ -117,7 +118,7 @@ function startButtonListeners() {
     
     var new_amnt_field = document.createElement('div');
     new_amnt_field.className = 'send-amount-field';
-    new_amnt_field.innerHTML = '<input type="text" class="send-input-amount" id="send-amount-'+i+'" placeholder="Enter amount (XMR)">';
+    new_amnt_field.innerHTML = '<input type="text" class="send-input-amount" id="send-amount-'+i+'" placeholder="Enter amount (ETNX)">';
     new_amnt_field.setAttribute("data-id", 'amnt-field-'+i);
     
     destinations.appendChild(new_dest_field);

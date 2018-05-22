@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function save_options() {
   // Read settings from Options pop-up box:
   var walletPort = String(document.getElementById('monero-wallet-rpc-port').value);
+  var remote = String(document.getElementById('options-remote').value);
   var saveAuth = false, username = '', password = '';
   if (document.getElementById('options-save-auth').checked) {
     var saveAuth = true;
@@ -16,13 +17,14 @@ function save_options() {
   // Save options in Chrome storage:
   if (Number(walletPort) >= 1 && Number(walletPort) <= 65535) {
     chrome.storage.sync.set({
+      remote: remote,
       walletPort: walletPort,
       saveAuth: saveAuth,
       username: username,
       password: password
     }, function() {
       var status = document.getElementById('status');
-      updateWalletInfo(walletPort, saveAuth, username, password);
+      updateWalletInfo(remote, walletPort, saveAuth, username, password);
       status.textContent = 'Options saved.';
       setTimeout(function() {
         status.textContent = '';
@@ -31,15 +33,16 @@ function save_options() {
   } else {
     var status = document.getElementById('status');
     chrome.storage.sync.set({
-      walletPort: '18082',
+      remote: remote,
+      walletPort: '28888',
       saveAuth: saveAuth,
       username: username,
       password: password
     }, function() {
       var status = document.getElementById('status');
-      updateWalletInfo(walletPort, saveAuth, username, password);
-      document.getElementById('monero-wallet-rpc-port').value = 18082;
-      status.textContent = 'Options saved. Port invalid... set to 18082.';
+      updateWalletInfo(remote, walletPort, saveAuth, username, password);
+      document.getElementById('monero-wallet-rpc-port').value = 28888;
+      status.textContent = 'Options saved. Port invalid... set to 28888.';
       setTimeout(function() {
         status.textContent = '';
       }, 2000);
@@ -56,6 +59,7 @@ function save_options() {
 function restore_options() {
   // Get saved options from Chrome storage:
   chrome.storage.sync.get({
+    remote: '',
     walletPort: '',
     saveAuth: false,
     username: '',
@@ -65,6 +69,7 @@ function restore_options() {
     document.getElementById('options-save-auth').checked = items.saveAuth;
     document.getElementById('options-username').value = items.username;
     document.getElementById('options-password').value = items.password;
+    document.getElementById('options-remote').value = items.remote;
   });
 }
 
@@ -81,9 +86,10 @@ function clear_storage() {
   });
 }
 
-function updateWalletInfo(port, saveAuth, username, password) {
+function updateWalletInfo(remote, port, saveAuth, username, password) {
   var request = {
-    greeting: "Mynt mynt-wallet-rpc Update Wallet Info",
+    greeting: "Electronero electronero-wallet-rpc Update Wallet Info",
+    remote: remote,
     newWalletPort: port,
     saveAuth: saveAuth,
     username: username,

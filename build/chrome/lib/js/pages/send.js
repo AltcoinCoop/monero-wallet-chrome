@@ -1,5 +1,6 @@
 var wallet_info = {
   port: '',
+  remote: '',
   address: '',
   balance: '0',
   unlockedBalance: '0',
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Requests Monero URI info that was found by background/send.js and fills send form:
 function getMoneroURIfromBackground() {
-  var request = {greeting: "Mynt mynt-wallet-rpc Fill Send Page"};
+  var request = {greeting: "Electronero electronero-wallet-rpc Fill Send Page"};
   chrome.runtime.sendMessage(request, function (response) {
     document.getElementById('send-dest-popup-0').value   = response.address;
     document.getElementById('send-amount-popup-0').value = response.amount;
@@ -36,7 +37,7 @@ function getMoneroURIfromBackground() {
 
 // Request wallet info from background/wallet.js and display
 function getBalanceAndDisplay() {
-  var request = {greeting: "Mynt mynt-wallet-rpc Send Wallet Info"};
+  var request = {greeting: "Electronero electronero-wallet-rpc Send Wallet Info"};
   chrome.runtime.sendMessage(request, function (resp) {
     if (resp.status == 'ok') {
       document.getElementById('send-status-offline').style.display = "none";
@@ -147,7 +148,7 @@ function sendMoneroNewTab () {
   var fee = undefined, unlock_time = undefined, get_tx_key = true, new_algo = true;
   var dests = [{amount: JSONbig.parse(coinsToAtomic(amount)), address: destination}];
 
-  transferSplit(wallet_info.port, dests, pay_id, fee, mixin, unlock_time, get_tx_key, new_algo,
+  transferSplit(wallet_info.remote, wallet_info.port, dests, pay_id, fee, mixin, unlock_time, get_tx_key, new_algo,
     function (resp) {
       if (resp.hasOwnProperty("result")) {
         // Send successful:
