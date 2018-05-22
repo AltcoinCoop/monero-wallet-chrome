@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Monero Wallet for Google Chrome™",
-  "short_name":"Monero Wallet",
+  "name": "Electronero Wallet for Google Chrome™",
+  "short_name":"Electronero Wallet",
   "author": "bigreddmachine",
-  "version": "0.10.2",
-  "version_name": "0.10.2-beta",
-  "description": "A Chrome™ extension for using monero-wallet-rpc",
+  "version": "0.12.0",
+  "version_name": "0.12.0-beta",
+  "description": "A Chrome™ extension for using electronero-wallet-rpc",
   "icons": {
     "128":"data/img/logo128.png",
     "256":"data/img/logo256.png",
@@ -16,7 +16,7 @@
       "19": "data/img/logo19.png",
       "38": "data/img/logo38.png"
     },
-    "default_title": "Monero Wallet for Google Chrome™",
+    "default_title": "Electronero Wallet for Google Chrome™",
     "default_popup": "data/html/popup.html"
   },
   "options_ui": {
