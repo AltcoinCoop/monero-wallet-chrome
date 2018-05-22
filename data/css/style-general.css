@@ -180,6 +180,11 @@ img#monero-logo {
   vertical-align: middle;
   padding:4px;
 }
+img#electronero-logo {
+  height: 40px;
+  vertical-align: middle;
+  padding:4px;
+}
 
 /*
  * Footer
