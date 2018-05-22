@@ -2,34 +2,37 @@
 <html>
 
 <head>
-  <title>Monero Wallet for Google Chrome&#8482; Options</title>
+  <title>Electronero Wallet for Google Chrome&#8482; Options</title>
   <link href="/data/css/style-page-options.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
   <div id="monero-wallet-rpc-config">
-    <h2> Thank you for installing Monero Wallet for Chrome! </h2>
+    <h2> Thank you for installing Electronero Wallet for Chrome! </h2>
 
-    <p> This page is the configuration page for the extension. Here you will need to set which port the extension can use to talk to monero-wallet-rpc. You can return to this page in the future from the "Settings" button in the extension menu. </p>
+    <p> This page is the configuration page for the extension. Here you will need to set which port the extension can use to talk to electronero-wallet-rpc. You can return to this page in the future from the "Settings" button in the extension menu. </p>
 
     <h3> Getting Started </h3>
 
-    <p> In order to use this extension, monero-wallet-rpc must be running on the same computer as your Chrome or Chromium browser. For help on setting this up, visit our <a target="_blank" href="/data/html/start.html">Getting Started</a> guide. </p>
+    <p> In order to use this extension, electronero-wallet-rpc must be running on the same computer as your Chrome or Chromium browser. For help on setting this up, visit our <a target="_blank" href="/data/html/start.html">Getting Started</a> guide. </p>
 
-    <p>  Once monero-wallet-rpc is configured and open, please specify the port monero-wallet-rpc is listening on here. </p>
+    <p>  Once electronero-wallet-rpc is configured and open, please specify the port electronero-wallet-rpc is listening on here. </p>
 
     <form>
       <h4>RPC Port:</h4>
       <p>
         <input type="text" id="monero-wallet-rpc-port">
       </p>
+      <p>
+      <h4>Remote RPC Daemon:</h4>
+      <input type="text" name="remote" id="options-remote" placeholder="remote">
+      </p>
       <h4>RPC Login:</h4>
       <p>
         <input type="checkbox" id="options-save-auth"> Store Authentication<br>
         <input type="text" id="options-username" placeholder="username"><br>
         <input type="password" id="options-password" placeholder="password">
-        <input type="text" name="remote" id="options-remote" placeholder="remote">
       </p>
       <button type="button" id="save">Save</button><!--<button type="button" id="clear">Clear</button>--> &nbsp;<span id="status"></span>
     </form>
@@ -38,13 +41,13 @@
   <div id="about">
     <h2>About This Extension</h2>
     <p>
-      Monero Wallet for Google Chrome&#8482; is distributed without warranty under the <a href="/LICENSE" target="_blank">MIT License</a>.
-      Source code for this extension is hosted on <a target="_blank" href="https://github.com/Monero-Monitor/monero-wallet-chrome">Github</a>.
+      Electronero Wallet for Google Chrome&#8482; is distributed without warranty under the <a href="/LICENSE" target="_blank">MIT License</a>.
+      Source code for this extension is hosted on <a target="_blank" href="https://github.com/electronero/electronero-wallet-chrome">Github</a>.
       Please feel free to fork, submit pull requests or issues, or otherwise contribute in making this extension as useful as possible.
       Google Chrome is a trademark of Google Inc. Use of this trademark is subject to Google Permissions.
     </p>
     <p> Please consider donating to the developer if you find this tool useful:</p>
-    <p class="center"><a id="devaddr" target="_blank" href="monero:4AL2cmmrVC41if2TzxfYUKFoVF8xnkzszFX7KVS21zh1HgMWWTfa8wh23xBWLG2htS42LaqfQGgz69vVWA5uZGhaNLc72jB"><img class="donate-button"/></a></p>
+    <p class="center"><a id="devaddr" target="_blank" href="electronero:etnk8PzZkPBXfgTH1mMMV6f7SajSWJmvEjHspgRVTad3CTepyWTTyDB1V85vAuPT3dASLAEYMaNZWVXo8YQHzAH55BUUoeyaBD"><img class="donate-button"/></a></p>
   </div>
 
   <script type="text/javascript" src="/lib/js/content/uri-checker.js"></script>
