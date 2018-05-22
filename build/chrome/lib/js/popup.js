@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     wallet_info.remote = String(document.getElementById('remote').value);
 
     var request = {
-      greeting: "Mynt mynt-wallet-rpc Update Wallet Info",
+      greeting: "Electronero electronero-wallet-rpc Update Wallet Info",
       newWalletPort: wallet_info.port,
       saveAuth: wallet_info.saveAuth,
       username: wallet_info.username,
