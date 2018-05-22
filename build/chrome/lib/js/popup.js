@@ -258,7 +258,7 @@ function receiveNormalQR (payment_id, amount) {
   var amnt_str   = String(amount);
   var pay_id_str = String(payment_id);
 
-  var uri_string = 'monero:' + wallet_info.address;
+  var uri_string = 'electronero:' + wallet_info.address;
   if (amnt_str.length > 0)   uri_string += '?amount=' + amnt_str;
   if (pay_id_str.length > 0) uri_string += '?payment_id=' + pay_id_str;
 
@@ -581,7 +581,7 @@ function confirmSend () {
 
     var amnt = document.createElement('div');
     amnt.className = 'send-confirm-field';
-    if (amount != '') amnt.innerHTML = amount + ' XMR';
+    if (amount != '') amnt.innerHTML = amount + ' ETNX';
     li.appendChild(amnt);
 
     if (i%2 == 0) {

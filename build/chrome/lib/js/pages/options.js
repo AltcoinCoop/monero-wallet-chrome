@@ -11,6 +11,7 @@ function save_options() {
   var saveAuth = false, username = '', password = '';
   if (document.getElementById('options-save-auth').checked) {
     var saveAuth = true;
+    var remote = String(document.getElementById('options-remote').value);
     var username = String(document.getElementById('options-username').value);
     var password = String(document.getElementById('options-password').value);
   }
@@ -34,15 +35,15 @@ function save_options() {
     var status = document.getElementById('status');
     chrome.storage.sync.set({
       remote: remote,
-      walletPort: '28888',
+      walletPort: '20202',
       saveAuth: saveAuth,
       username: username,
       password: password
     }, function() {
       var status = document.getElementById('status');
       updateWalletInfo(remote, walletPort, saveAuth, username, password);
-      document.getElementById('monero-wallet-rpc-port').value = 28888;
-      status.textContent = 'Options saved. Port invalid... set to 28888.';
+      document.getElementById('monero-wallet-rpc-port').value = 20202;
+      status.textContent = 'Options saved. Port invalid... set to 20202.';
       setTimeout(function() {
         status.textContent = '';
       }, 2000);
